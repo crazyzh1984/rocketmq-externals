@@ -21,6 +21,7 @@ public class RocketMQMessageConst {
     public static final String TAGS = "TAGS";
     public static final String TOPIC = "TOPIC";
     public static final String MESSAGE_ID = "MESSAGE_ID";
+    public static final String DELAY_TIMELEVEL = "DELAY_TIMELEVEL";
     public static final String BORN_TIMESTAMP = "BORN_TIMESTAMP";
     public static final String BORN_HOST = "BORN_HOST";
     public static final String FLAG = "FLAG";

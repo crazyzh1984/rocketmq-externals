@@ -146,15 +146,33 @@ public class RocketMQUtil {
             }
 
             // set rocketMQ message flag
-            Object flagObj = headers.getOrDefault("FLAG", "0");
+            Object flagObj = headers.getOrDefault(RocketMQMessageConst.FLAG, "0");
             int flag = 0;
             try {
-                flag = Integer.parseInt(flagObj.toString());
+                if (flagObj instanceof Integer) {
+                    flag = (Integer) flagObj;
+                } else {
+                    flag = Integer.parseInt(flagObj.toString());
+                }
             } catch (NumberFormatException e) {
                 // ignore
                 log.info("flag must be integer, flagObj:{}", flagObj);
             }
             rocketMsg.setFlag(flag);
+
+            // set rocketMQ message delayTimeLevel
+            Object delayObj = headers.get(RocketMQMessageConst.DELAY_TIMELEVEL);
+            try {
+                if (flagObj instanceof Integer) {
+                    rocketMsg.setDelayTimeLevel((Integer) delayObj);
+                } else if (delayObj != null) {
+                    int dtLevel = Integer.parseInt(delayObj.toString());
+                    rocketMsg.setDelayTimeLevel(dtLevel);
+                }
+            } catch (NumberFormatException e) {
+                // ignore
+                log.info("delay TimeLevel must be integer, delayObj:{}", delayObj);
+            }
 
             // set rocketMQ message waitStoreMsgOkObj
             Object waitStoreMsgOkObj = headers.getOrDefault("WAIT_STORE_MSG_OK", "true");
@@ -163,7 +181,7 @@ public class RocketMQUtil {
 
             headers.entrySet().stream()
                 .filter(entry -> !Objects.equals(entry.getKey(), RocketMQMessageConst.KEYS)
-                    && !Objects.equals(entry.getKey(), "FLAG")
+                    && !Objects.equals(entry.getKey(), RocketMQMessageConst.FLAG)
                     && !Objects.equals(entry.getKey(), "WAIT_STORE_MSG_OK")) // exclude "KEYS", "FLAG", "WAIT_STORE_MSG_OK"
                 .forEach(entry -> {
                     rocketMsg.putUserProperty("USERS_" + entry.getKey(), String.valueOf(entry.getValue())); // add other properties with prefix "USERS_"
