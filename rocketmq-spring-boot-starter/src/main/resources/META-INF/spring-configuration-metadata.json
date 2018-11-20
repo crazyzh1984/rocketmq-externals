@@ -1,0 +1,72 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties",
+      "name": "spring.rocketmq",
+      "type": "org.apache.rocketmq.spring.starter.RocketMQProperties"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties",
+      "name": "spring.rocketmq.producer",
+      "sourceMethod": "getProducer()",
+      "type": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties",
+      "name": "spring.rocketmq.name-server",
+      "description": "name server for rocketMQ, formats: `host:port;host:port`",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.group",
+      "description": "name of producer",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.send-msg-timeout",
+      "defaultValue": "3000",
+      "description": "millis of send message timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.compress-msg-body-over-howmuch",
+      "defaultValue": "4096",
+      "description": "Compress message body threshold, namely, message body larger than 4k will be compressed on default.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.retry-times-when-send-failed",
+      "defaultValue": "2",
+      "description": "Maximum number of retry to perform internally before claiming sending failure in synchronous mode.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.retry-times-when-send-async-failed",
+      "defaultValue": "2",
+      "description": "Maximum number of retry to perform internally before claiming sending failure in asynchronous mode.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.retry-another-broker-when-not-store-ok",
+      "defaultValue": "false",
+      "description": "Indicate whether to retry another broker on sending failure internally.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "org.apache.rocketmq.spring.starter.RocketMQProperties.Producer",
+      "name": "spring.rocketmq.producer.max-message-size",
+      "defaultValue": "4194304",
+      "description": "Maximum allowed message size in bytes.",
+      "type": "java.lang.Integer"
+    }
+ ]
+}
